@@ -2,7 +2,7 @@
 #include <cmath>
 
 double f(double x){
-    return x*x - 6*x  +2;
+    return x+2;
 }
 
 double calcularRaiz(double a, double b, double tolerancia, int &numeroDivisiones, int maximoDivisionesPermitido){
@@ -16,8 +16,9 @@ double calcularRaiz(double a, double b, double tolerancia, int &numeroDivisiones
         m = (a + b) / 2;
         if(b-a>tolerancia && numeroDivisiones < maximoDivisionesPermitido) {
             //Sigo dividiendo
+            numeroDivisiones++;
             double raiz=calcularRaiz(a, m, tolerancia, numeroDivisiones, maximoDivisionesPermitido);
-            if(raiz==NAN)
+            if(std::isnan(raiz))
                 return calcularRaiz(m, b, tolerancia, numeroDivisiones, maximoDivisionesPermitido);
             else
                 return raiz;
@@ -59,7 +60,7 @@ int main()
     std::cin  >> maximoDivisionesPermitido;
 
     double resultado=calcularRaiz(a,b,tolerancia,numeroInicialDivisiones, maximoDivisionesPermitido);
-    if(resultado==NAN)
+    if(std::isnan(resultado))
         std::cout <<"No hemos podido determinar si la función no tiene raices en el intervalo especificado. ";
     else
         std::cout << "Raiz encontrada. Su valor es : " << resultado;
