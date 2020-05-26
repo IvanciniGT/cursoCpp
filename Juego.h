@@ -4,7 +4,7 @@
 
 #ifndef UNTITLED_JUEGO_H
 #define UNTITLED_JUEGO_H
-void jugarPartida();
+int jugarPartida();
 void iniciarJuego();
 
 #endif //UNTITLED_JUEGO_H

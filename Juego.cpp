@@ -5,7 +5,7 @@
 /*
  * Juega una partida para un jugador.
  */
-void jugarPartida()
+int jugarPartida()
 {
     int numeroPensado=numeroAleatorio();
     int vidas=3;
@@ -18,7 +18,7 @@ void jugarPartida()
         if(numeroJugador==numeroPensado){
             //Acierto
             std::cout << "Que grande eres. Acertaste!!!"<< std::endl;
-            return; //break;
+            return 4-vidas; //break;
         }else{
             // No acierto
             diferencia=std::abs(numeroJugador-numeroPensado);
@@ -34,7 +34,7 @@ void jugarPartida()
 
     //if(vidas==0)
     std::cout << "El número que había pensado era: "<< numeroPensado << std::endl;
-
+    return 0;
 }
 
 /*
@@ -54,8 +54,10 @@ void iniciarJuego(){
         // ///////////////////////////////////////////////////////////////////////////////////////
         // Contra el ejecutar al menos un juego y luego pregunta si quiere jugar mas a un jugador
         do{
-            jugarPartida();
+            int intentos=jugarPartida();
             jugadorActual.numeroTotalPartidasJugadas++;
+            if(intentos!=0 && jugadorActual.numeroMinimoDeIntentos>intentos) // Todo: !!!!
+                jugadorActual.numeroMinimoDeIntentos==intentos;
             std::cout << "Llevas jugadas " << jugadorActual.numeroTotalPartidasJugadas<< " partidas. ";
             std::cout << "Quieres jugar otra?: (si/no)" << std::endl;
             std::cin >> respuesta;
